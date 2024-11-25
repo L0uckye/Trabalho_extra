@@ -1,0 +1,11 @@
+O Codigo_Principal.cpp tem as funções ligadas aos conjuntos disjuntos, escolhi fazer com arvores disjuntas e os algoritmos de ordenação
+Bubble, insertion, merge e quick estão também no código principal, organizadas com suas funções auxiliares como a merge e a partition
+O Gerar_Entrada gera um arquivo txt que vai ser lido e processado pelo Codigo_Principal que retorna um arquivo também txt, oraganizando os
+subconjuntos e deixando claro os algoritmos de ordenação usados durante o processo para cada subconjunto.
+
+Para fazer tudo dar certo, basta rodar o gerar entrada, o n de elementos e o k de subconjuntos podem ser modificados na parte especificada 
+no codigo Gerar_Entrada.
+rodando o código será gerada a entrada com o n elementos e os subconjuntos k > 1 com elementos aletórios, depois disso basta rodar o código principal
+que  o arquivo Resultado.txt será gerado com todas as informações processadas, os cubconjuntos, seu estado inicial, seu repsentante, seu estado ordenado
+e o algoritmo de ordenação usado, também é possível mostrar o vetor pai, basta fazer uma modificação na parte especificada no código e é isso
+O arquivo Resultado.txt tem todas as informações e todos os dados processados.
