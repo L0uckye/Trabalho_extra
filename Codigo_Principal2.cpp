@@ -138,7 +138,7 @@ void Printar_Ordenacao(const vector<int>& vec, ofstream& arquivo) {
 int main() {
     srand(time(0));
 
-    ifstream file("entrada1.txt");
+    ifstream file("entrada2.txt");
     if (!file) {
         cerr << "Erro ao abrir o arquivo de entrada." << endl;
         return 1;
