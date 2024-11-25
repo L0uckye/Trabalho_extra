@@ -1,0 +1,7 @@
+Sobre o Codigo_Principal2.cpp ele funciona de forma diferente, as modificações a serem feitas na entrada são feitas na própria entrada, 
+A entrada1.txt se organiza por N K, com N sendo elmentos totais e K numero de conjuntos disjuntos e é isso, basta isso e rodar o codigo
+ele gerará um arquivo resultado2.txt com as informações do que vai acontecendo durante o processo, com os algoritmos de ordenação sendo
+usados de forma aleatória e no final mostra o resultado do vetor pai.
+
+O Codigo_Principal2.cpp guarda todas as funções necessárias e auxiliares, como funções próprias de ordenação e funções relacionadas aos
+conjuntos disjuntos, assim como as arvores disjuntas.
