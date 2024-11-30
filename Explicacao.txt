@@ -5,7 +5,6 @@ subconjuntos e deixando claro os algoritmos de ordenação usados durante o proc
 
 Para fazer tudo dar certo, basta rodar o gerar entrada, o n de elementos e o k de subconjuntos podem ser modificados na parte especificada 
 no codigo Gerar_Entrada.
-rodando o código será gerada a entrada com o n elementos e os subconjuntos k > 1 com elementos aletórios, depois disso basta rodar o código principal
-que  o arquivo Resultado.txt será gerado com todas as informações processadas, os cubconjuntos, seu estado inicial, seu repsentante, seu estado ordenado
-e o algoritmo de ordenação usado, também é possível mostrar o vetor pai, basta fazer uma modificação na parte especificada no código e é isso
-O arquivo Resultado.txt tem todas as informações e todos os dados processados.
+
+Rodando o código será gerada a entrada com o n de elementos do conjunto e k>1 partições definidas, depois disso basta rodar o código principal
+que e no console ou pelo .exe o usuário terá acesso 4 opções, Ordenar um subconjunto a partir de um elemento de sua escolha, Achar o representante de um elemento de sua escolha, ou Unir 2 subconjuntos a partir de 2 elementos de escolha do usuário e opção de sair que encerra o código. Todas as opções fazem o que é pedido por elas e as informações necessárias são expostas durante a operação do código.
