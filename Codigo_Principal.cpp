@@ -7,41 +7,42 @@
 #include <cstdlib>
 using namespace std;
 
-// Função para encontrar o representante do conjunto (com compressão de caminho)
+// Funcao para encontrar o representante do conjunto (com compressao de caminho)
 int achar_pai(vector<int>& pai, int x) {
     if (pai[x] != x) {
-        pai[x] = achar_pai(pai, pai[x]); // Compressão de caminho
+        pai[x] = achar_pai(pai, pai[x]); // Compressao de caminho
     }
     return pai[x];
 }
 
-// Função para encontrar o representante de um conjunto, sem modificar o conjunto
+// Funcao para encontrar o representante de um conjunto, sem modificar o conjunto
 int achar_representante(const vector<int>& pai, int x) {
     while (pai[x] != x) {
-        x = pai[x];  // Subir na árvore até encontrar o representante
+        x = pai[x];  // Subir na arvore ate encontrar o representante
     }
     return x;  // Retorna o representante (raiz)
 }
 
-// Função para unir dois conjuntos (união por rank)
+// Função para fazer a união de dois subconjuntos
 void unionSets(vector<int>& pai, vector<int>& rank, int x, int y) {
     int raizX = achar_pai(pai, x);
     int raizY = achar_pai(pai, y);
 
     if (raizX != raizY) {
+        // União por rank
         if (rank[raizX] > rank[raizY]) {
-            pai[raizY] = raizX;
+            pai[raizY] = raizX; // A raiz de Y agora é X
         } else if (rank[raizX] < rank[raizY]) {
-            pai[raizX] = raizY;
+            pai[raizX] = raizY; // A raiz de X agora é Y
         } else {
-            pai[raizY] = raizX;
-            rank[raizX]++;
+            pai[raizY] = raizX; // A raiz de Y agora é X
+            rank[raizX]++; // Incrementa o rank de X
         }
     }
 }
 
-// Algoritmos de ordenação
-// Função para realizar ordenação por meio de bubble_Sort
+// Algoritmos de ordenacao
+// Funcao para realizar ordenacao por meio de bubble_Sort
 void bubble_Sort(vector<int>& vec) {
     for (size_t i = 0; i < vec.size() - 1; i++) {
         for (size_t j = 0; j < vec.size() - i - 1; j++) {
@@ -52,7 +53,7 @@ void bubble_Sort(vector<int>& vec) {
     }
 }
 
-// Função para realizar ordenação por meio de insertion_Sort 
+// Funcao para realizar ordenacao por meio de insertion_Sort 
 void insertion_Sort(vector<int>& vec) {
     for (size_t i = 1; i < vec.size(); i++) {
         int key = vec[i];
@@ -65,7 +66,7 @@ void insertion_Sort(vector<int>& vec) {
     }
 }
 
-// Função merge para ser usado no algoritmo de merge_Sort 
+// Funcao merge para ser usado no algoritmo de merge_Sort 
 void merge(vector<int>& vec, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -99,7 +100,7 @@ void merge(vector<int>& vec, int left, int mid, int right) {
     }
 }
 
-// Função para realizar ordenação por meio de merge_Sort 
+// Funcao para realizar ordenacao por meio de merge_Sort 
 void merge_Sort(vector<int>& vec, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
@@ -109,7 +110,7 @@ void merge_Sort(vector<int>& vec, int left, int right) {
     }
 }
 
-// Função partition usado no algoritmo de quick_Sort para dar swap nos elementos 
+// Funcao partition usado no algoritmo de quick_Sort para dar swap nos elementos 
 int partition(vector<int>& vec, int low, int high) {
     int pivot = vec[high];
     int i = low - 1;
@@ -124,7 +125,7 @@ int partition(vector<int>& vec, int low, int high) {
     return i + 1;
 }
 
-// Função para realizar ordenação por meio de quick_Sort
+// Funcao para realizar ordenacao por meio de quick_Sort
 void quick_Sort(vector<int>& vec, int low, int high) {
     if (low < high) {
         int pi = partition(vec, low, high);
@@ -133,14 +134,14 @@ void quick_Sort(vector<int>& vec, int low, int high) {
     }
 }
 
-// Função para imprimir a ordenação feita
+// Funcao para imprimir a ordenacao feita
 void Printar_Ordenacao(const vector<int>& vec, ofstream& arquivo) {
     for (int el : vec) {
         arquivo << el << " ";
     }
 }
 
-// Função para imprimir o representante de um subconjunto (antes da ordenação)
+// Funcao para imprimir o representante de um subconjunto (antes da ordenacao)
 void imprimirRepresentante(const vector<int>& pai, const vector<int>& subconjunto, ofstream& arquivo) {
     // Encontrar o representante do subconjunto
     int representante = achar_representante(pai, subconjunto[0]);  // Encontrar o representante do primeiro elemento
@@ -149,7 +150,7 @@ void imprimirRepresentante(const vector<int>& pai, const vector<int>& subconjunt
     arquivo << "Representante do conjunto: " << representante << endl;
 }
 
-// Função para imprimir o vetor pai
+// Funcao para imprimir o vetor pai
 void imprimirVetorPai(const vector<int>& pai, ofstream& arquivo) {
     arquivo << "Vetor pai: " << '\n';
     for (size_t i = 1; i < pai.size(); i++) {
@@ -161,8 +162,16 @@ void imprimirVetorPai(const vector<int>& pai, ofstream& arquivo) {
     arquivo << endl;
 }
 
+// Funcao para imprimir o vetor
+void imprimirVetor(const vector<int>& vec) {
+    for (int el : vec) {
+        cout << el << " ";
+    }
+    cout << endl;
+}
+
 int main() {
-    srand(time(0));  // Inicializar a semente para números aleatórios
+    srand(time(0)); // Inicializar a semente para números aleatórios
 
     ifstream file("entrada.txt");
     if (!file) {
@@ -182,87 +191,86 @@ int main() {
     string line;
     getline(file, line); // Consumir a linha restante
 
-    // Ler subconjuntos da entrada
-    vector<vector<int>> subconjuntos;
     while (getline(file, line)) {
         stringstream ss(line);
-        vector<int> subconj;
-        int element;
-        
-        while (ss >> element) {
-            subconj.push_back(element);
-        }
-
-        subconjuntos.push_back(subconj);
-
-        // União de todos os elementos do subconjunto
-        for (size_t i = 1; i < subconj.size(); i++) {
-            unionSets(pai, rank, subconj[0], subconj[i]);
+        int element1, element2;
+        ss >> element1;  // Pega o primeiro elemento para unir com os outros
+        while (ss >> element2) {
+            unionSets(pai, rank, element1, element2); // Faz a união entre os elementos
         }
     }
 
     file.close();
 
-    // Abrir arquivo de saída para escrever o resultado
-    int N_subconjunto = 1;
-    ofstream arquivo("Resultado.txt");
-    if (!arquivo) {
-        cerr << "Erro ao abrir o arquivo Resultado.txt." << endl;
-        return 1;
-    }
+    while (true) {
+        cout << "\nMenu de Operacoes:\n";
+        cout << "1. Ordenar subconjunto contendo um elemento escolhido\n";
+        cout << "2. Identificar o representante de um elemento\n";
+        cout << "3. Fazer uniao de dois subconjuntos\n";
+        cout << "4. Sair\n";
+        cout << "Escolha uma opcao: ";
+        int opcao;
+        cin >> opcao;
 
-    // Para cada subconjunto, ordenar e escrever no arquivo
-    for (const auto& subconj : subconjuntos) {
-        vector<int> sorted_subconj = subconj;
+        if (opcao == 1) {
+            int elemento;
+            cout << "Digite o elemento para ordenar seu subconjunto: ";
+            cin >> elemento;
 
-        // Mostrar estado antes da ordenação
-        arquivo << "Subconjunto "<< to_string(N_subconjunto) << '\n';
-        arquivo << "Antes da ordenação: ";
-        Printar_Ordenacao(sorted_subconj, arquivo);
-        arquivo << endl;
+            if (elemento < 1 || elemento > n) {
+                cout << "Elemento invalido.\n";
+                continue;
+            }
 
-        // Escolher aleatoriamente o algoritmo de ordenação
-        int sorteio = rand() % 4;  // Aleatório entre 0 e 3
-        string algoritmo;
+            // Encontrar o representante do elemento
+            int representante = achar_pai(pai, elemento);
 
-        switch (sorteio) {
-            case 0:
-                algoritmo = "bubble_Sort";
-                bubble_Sort(sorted_subconj);
-                break;
-            case 1:
-                algoritmo = "insertion_Sort";
-                insertion_Sort(sorted_subconj);
-                break;
-            case 2:
-                algoritmo = "merge_Sort";
-                merge_Sort(sorted_subconj, 0, sorted_subconj.size() - 1); // Passando os índices corretamente
-                break;
-            case 3:
-                algoritmo = "quick_Sort";
-                quick_Sort(sorted_subconj, 0, sorted_subconj.size() - 1); // Passando os índices corretamente
-                break;
+            // Criar o subconjunto associado ao representante
+            vector<int> subconjunto;
+            for (int i = 1; i <= n; i++) {
+                if (achar_pai(pai, i) == representante) {
+                    subconjunto.push_back(i);
+                }
+            }
+
+            // Ordenar o subconjunto escolhido
+            cout << "Escolha o metodo de ordenacao:\n1. Bubble Sort\n2. Insertion Sort\n3. Quick Sort\n4. Merge Sort\n";
+            int metodo;
+            cin >> metodo;
+
+            if (metodo == 1) {
+                bubble_Sort(subconjunto);
+            } else if (metodo == 2) {
+                insertion_Sort(subconjunto);
+            } else if (metodo == 3) {
+                quick_Sort(subconjunto, 0, subconjunto.size() - 1);
+            } else if (metodo == 4) {
+                merge_Sort(subconjunto, 0, subconjunto.size() - 1);
+            } else {
+                cout << "Metodo de ordenacao invalido.\n";
+                continue;
+            }
+
+            cout << "Subconjunto ordenado: ";
+            imprimirVetor(subconjunto);
+        } else if (opcao == 2) {
+            int elemento;
+            cout << "Digite o elemento para encontrar seu representante: ";
+            cin >> elemento;
+            int representante = achar_representante(pai, elemento);
+            cout << "O representante do elemento " << elemento << " é " << representante << endl;
+        } else if (opcao == 3) {
+            int element1, element2;
+            cout << "Digite os elementos para fazer uniao: ";
+            cin >> element1 >> element2;
+            unionSets(pai, rank, element1, element2);
+            cout << "Uniao feita entre " << element1 << " e " << element2 << endl;
+        } else if (opcao == 4) {
+            break;
+        } else {
+            cout << "Opcao invalida, tente novamente.\n";
         }
-
-        // Mostrar o tipo de ordenação
-        // Imprimir o representante de cada conjunto
-        imprimirRepresentante(pai, sorted_subconj, arquivo);
-
-        arquivo << "Tipo de ordenação: " << algoritmo << endl;
-
-        // Mostrar estado depois da ordenação
-        arquivo << "Depois da ordenação: ";
-        Printar_Ordenacao(sorted_subconj, arquivo);
-        
-        arquivo << endl << endl;
-        N_subconjunto++;
     }
-
-    // Imprimir o vetor pai(se quiser ver o vetor pai só modificar abaixo de comentário para código o primeiro //)
-    //imprimirVetorPai(pai, arquivo);  // Adicionando a impressão do vetor pai
-
-    arquivo.close();
-    cout << "Ordenação concluída e resultados gravados no arquivo 'Resultado.txt'." << endl;
 
     return 0;
 }
