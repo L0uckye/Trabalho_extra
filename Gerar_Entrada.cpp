@@ -34,7 +34,7 @@ vector<vector<int>> Gerar_particao(int n, int k) {
 int main() {
     srand(time(0)); // Inicializa o gerador de números aleatórios
 
-    // Defina os valores de n(tamanho do vetor de pais) e k(número de subconjuntos)
+    // Defina os valores de n de elementos do conjunto e k(número de partições)
     int n = 42;
     int k = 13;
 
