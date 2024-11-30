@@ -35,8 +35,8 @@ int main() {
     srand(time(0)); // Inicializa o gerador de números aleatórios
 
     // Defina os valores de n(tamanho do vetor de pais) e k(número de subconjuntos)
-    int n = 700;
-    int k = 40;
+    int n = 42;
+    int k = 13;
 
 
     if (k > n || k < 1) {
