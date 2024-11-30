@@ -31,11 +31,11 @@ void unionSets(vector<int>& pai, vector<int>& rank, int x, int y) {
     if (raizX != raizY) {
         // União por rank
         if (rank[raizX] > rank[raizY]) {
-            pai[raizY] = raizX; // A raiz de Y agora é X
+            pai[raizY] = raizX; // A raiz de Y agora e X
         } else if (rank[raizX] < rank[raizY]) {
-            pai[raizX] = raizY; // A raiz de X agora é Y
+            pai[raizX] = raizY; // A raiz de X agora e Y
         } else {
-            pai[raizY] = raizX; // A raiz de Y agora é X
+            pai[raizY] = raizX; // A raiz de Y agora e X
             rank[raizX]++; // Incrementa o rank de X
         }
     }
@@ -203,6 +203,7 @@ int main() {
     file.close();
 
     while (true) {
+        cout << "\nConjunto contem elementos de 1 a " << n;
         cout << "\nMenu de Operacoes:\n";
         cout << "1. Ordenar subconjunto contendo um elemento escolhido\n";
         cout << "2. Identificar o representante de um elemento\n";
@@ -211,6 +212,8 @@ int main() {
         cout << "Escolha uma opcao: ";
         int opcao;
         cin >> opcao;
+
+        cout << '\n';
 
         if (opcao == 1) {
             int elemento;
@@ -257,14 +260,27 @@ int main() {
             int elemento;
             cout << "Digite o elemento para encontrar seu representante: ";
             cin >> elemento;
+            if (elemento < 1 || elemento > n){
+                cout << "Elemento invalido.\n";
+                continue;
+            }else{
             int representante = achar_representante(pai, elemento);
-            cout << "O representante do elemento " << elemento << " é " << representante << endl;
+            cout << "O representante do elemento " << elemento << " e " << representante << endl;
+            }
         } else if (opcao == 3) {
             int element1, element2;
             cout << "Digite os elementos para fazer uniao: ";
             cin >> element1 >> element2;
+            if (element1 < 1 || element1 > n){
+                cout << "Elementos invalidos.\n";
+                continue;
+            }else if (element2 < 1 || element2 > n){
+                cout << "Elementos invalidos.\n";
+                continue;
+            }else{
             unionSets(pai, rank, element1, element2);
             cout << "Uniao feita entre " << element1 << " e " << element2 << endl;
+            }
         } else if (opcao == 4) {
             break;
         } else {
