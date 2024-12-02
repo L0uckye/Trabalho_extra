@@ -134,14 +134,14 @@ void quick_Sort(vector<int>& vec, int low, int high) {
     }
 }
 
-// Funcao para imprimir a ordenacao feita
+// Funcao para imprimir a ordenacao feita(não utilizado)
 void Printar_Ordenacao(const vector<int>& vec, ofstream& arquivo) {
     for (int el : vec) {
         arquivo << el << " ";
     }
 }
 
-// Funcao para imprimir o representante de um subconjunto (antes da ordenacao)
+// Funcao para imprimir o representante de um subconjunto (antes da ordenacao)(não utilizado)
 void imprimirRepresentante(const vector<int>& pai, const vector<int>& subconjunto, ofstream& arquivo) {
     // Encontrar o representante do subconjunto
     int representante = achar_representante(pai, subconjunto[0]);  // Encontrar o representante do primeiro elemento
@@ -171,7 +171,7 @@ void imprimirVetor(const vector<int>& vec) {
 }
 
 int main() {
-    srand(time(0)); // Inicializar a semente para números aleatórios
+    srand(time(0)); // Inicializar a semente para números aleatórios(não utilizado)
 
     ifstream file("entrada.txt");
     if (!file) {
